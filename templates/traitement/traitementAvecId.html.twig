@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Traitements{% endblock %}
+
+{% block body %}
+
+    <ul>
+    <br>
+    {% if traitement %}
+    <li>
+        {{traitement.getId}} - {{traitement.getDatedebut|date('Y-m-d')}} - {{traitement.getDatefin|date('Y-m-d') }}
+    </li>
+    {% else %}
+        Pas de traitement trouvé.
+    {% endif %} 
+    <br>
+    </ul>
+{% endblock %}

@@ -15,4 +15,27 @@ class TraitementController extends AbstractController
             'controller_name' => 'TraitementController',
         ]);
     }
+    
+
+    #[Route('/affichageTraitements', name: 'app_traitements')]
+   public function AfficherLesTraitements(ManagerRegistry $doctrine): Response
+   {
+       $repository = $doctrine->getRepository(Traitement::class);
+       $lesTraitements = $repository -> findAll();
+       return $this->render('traitement/index.html.twig', [
+           'controller_name' => 'TraitementController',
+           'traitements' => $lesTraitements,
+       ]);
+    }
+
+    #[Route('/affichageUnTraitement/{id}', name: 'app_traitementId')]
+        public function AfficherLeTraitement(ManagerRegistry $doctrine,$id): Response
+        {
+           $repository=$doctrine->getRepository(Traitement::class);
+           
+           $unTraitement=$repository->find($id);
+           return $this->render('traitement/traitementAvecId.html.twig', [
+            'traitement' => $unTraitement,
+            ]);
+        }
 }
