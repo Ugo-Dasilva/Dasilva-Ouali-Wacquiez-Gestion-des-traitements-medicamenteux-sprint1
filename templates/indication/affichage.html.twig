@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bodrum - Patients{% endblock %}
+
+{% block body %}
+ <tr>
+            <th>Id</th>
+            <th>posologie</th>
+            <th>Traiement</th>
+            <th>Medicament</th>
+        </tr>
+
+        {% for indication in lesindications %}
+            <tr>
+                <td>{{indication.getId}}</td>
+                <td>{{indication.getposologie}}</td> 
+                <td>{{indication.getTraitement}}</td>
+                <td>
+                 </tr>
+
+        {% else %}
+     Pas de patients trouvés.
+        {% endfor %}     
+{% endblock %}

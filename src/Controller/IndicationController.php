@@ -18,12 +18,12 @@ class IndicationController extends AbstractController
         ]);
     }
 
-    #[Route('/AffichageIndication', name: 'app_affichage_indication')]
+    #[Route('/Affichage', name: 'app_affichage_indication')]
     public function AfficherLesMedicaments(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Indication::class);
         $lesIndications = $repository -> findAll();
-        return $this->render('Indication/affichage.html.twig', [
+        return $this->render('Indication/index.html.twig', [
             'controller_name' => 'IndicationController',
             'lesindications' => $lesIndications,
         ]);
@@ -35,7 +35,7 @@ class IndicationController extends AbstractController
     {   
         $repository = $doctrine->getRepository(Indication::class);
         $lesIndications = $repository ->findBy($id);
-        return $this->render('Indication/affichageuneindication.html.twig', [
+        return $this->render('Indication/affichage.html.twig', [
             'controller_name' => 'IndicationController',
             'lesindications' => $lesIndications,
         ]);
