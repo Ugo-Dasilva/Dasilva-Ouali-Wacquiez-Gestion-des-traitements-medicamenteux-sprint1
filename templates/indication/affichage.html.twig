@@ -3,22 +3,14 @@
 {% block title %}Bodrum - Patients{% endblock %}
 
 {% block body %}
- <tr>
-            <th>Id</th>
-            <th>posologie</th>
-            <th>Traiement</th>
-            <th>Medicament</th>
-        </tr>
 
         {% for indication in lesindications %}
-            <tr>
-                <td>{{indication.getId}}</td>
-                <td>{{indication.getposologie}}</td> 
-                <td>{{indication.getTraitement}}</td>
-                <td>
-                 </tr>
+            
+                L'indication : {{indication.getId}} La postologie = {{indication.getposologie}} <a class="nav-link" href="{{ path('app_affichage_indication',{id: indication.id})}}"> plus d'information </a>
+                <br>
+               
 
         {% else %}
-     Pas de patients trouvés.
+     Pas d'indication trouvés.
         {% endfor %}     
 {% endblock %}

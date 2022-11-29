@@ -11,31 +11,22 @@ use Symfony\Component\Routing\Annotation\Route;
 class IndicationController extends AbstractController
 {
     #[Route('/indication', name: 'app_indication')]
-    public function index(): Response
-    {
-        return $this->render('indication/index.html.twig', [
-            'controller_name' => 'IndicationController',
-        ]);
-    }
-
-    #[Route('/Affichage', name: 'app_affichage_indication')]
-    public function AfficherLesMedicaments(ManagerRegistry $doctrine): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
         $repository = $doctrine->getRepository(Indication::class);
         $lesIndications = $repository -> findAll();
-        return $this->render('Indication/index.html.twig', [
+        return $this->render('indication/affichage.html.twig', [
             'controller_name' => 'IndicationController',
             'lesindications' => $lesIndications,
         ]);
-
-}
+    }
 
     #[Route('/AffichageuneIndication/{id}', name: 'app_affichage_indication')]
     public function Afficher(ManagerRegistry $doctrine,$id): Response
     {   
         $repository = $doctrine->getRepository(Indication::class);
-        $lesIndications = $repository ->findBy($id);
-        return $this->render('Indication/affichage.html.twig', [
+        $lesIndications = $repository ->find($id);
+        return $this->render('indication/index.html.twig', [
             'controller_name' => 'IndicationController',
             'lesindications' => $lesIndications,
         ]);
