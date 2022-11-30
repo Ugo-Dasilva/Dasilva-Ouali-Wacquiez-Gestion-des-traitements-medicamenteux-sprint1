@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur le site{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <center><h1>💊 Bienvenue sur le site de la gestion des traitements médicamenteux 💊</h1></center>
+
+    Sur ce site vous allez pouvoir trouver : 
+    <ul>
+        <li>📌 Les médicaments : <a href="{{ path('app_medicament')}}">Cliquez 🆗</a></li>
+        <li>📌 Les traitements : <a href="{{ path('app_traitements')}}">Cliquez 🆗</a></li>
+        <li>📌 Les indications : <a href="{{ path('app_indication')}}">Cliquez 🆗</a></li>
+        <li>📌 Les séjours : <a href="{{ path('app_sejour')}}">Cliquez 🆗</a></li>
+    </ul>
+</div>
+{% endblock %}

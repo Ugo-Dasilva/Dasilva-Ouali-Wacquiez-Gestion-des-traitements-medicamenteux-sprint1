@@ -1,18 +1,39 @@
-<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Bodrum{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <script src="https://kit.fontawesome.com/45e38e596f.js" crossorigin="anonymous"></script>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-      
+            {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
 
         {% block javascripts %}
-        
+           {# {{ encore_entry_script_tags('app') }}#}
         {% endblock %}
     </head>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ path('app_principal')}}">Accueil</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('app_medicament')}}">Médicaments</a></li>
+                        <li><a href="{{ path('app_traitements')}}">Traitements</a></li>
+                        <li><a href="{{ path('app_indication')}}">Indications</a></li>
+                        <li><a href="{{ path('app_sejour')}}">Séjours</a></li>
+                    </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
 
     <body>
         {% block body %}{% endblock %}

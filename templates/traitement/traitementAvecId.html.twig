@@ -4,6 +4,35 @@
 
 {% block body %}
 
+<br><br><br>
+    <div class="mx-auto p-4 bg-light w-75"> 
+        <br><br>
+        <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>Date de Début</th>
+            <th>Date de Fin</th>
+            <th>Séjour</th>
+          {#<th>Séjour(s)</th>
+            <th>Modifier</th>#}
+        </tr>
+
+        {% if traitement %}
+            <tr>
+                <td>{{traitement.getId}}</td>
+                <td>{{traitement.getDatedebut|date('Y-m-d')}}</td> 
+                <td>{{traitement.getDatefin|date('Y-m-d')}}</td>
+                <td>{{traitement.getSejour.getId}}</td>
+            </tr>
+        </table>
+        {% else %}
+            Pas de traitement trouvé.
+        {% endif %} 
+        <br><br> 
+    </div>
+
+
+    {#
     <ul>
     <br>
     {% if traitement %}
@@ -14,5 +43,5 @@
         Pas de traitement trouvé.
     {% endif %} 
     <br>
-    </ul>
+    </ul>#}
 {% endblock %}
