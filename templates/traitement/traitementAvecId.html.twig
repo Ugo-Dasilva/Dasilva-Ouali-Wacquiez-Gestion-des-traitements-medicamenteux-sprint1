@@ -23,6 +23,7 @@
                 <td>{{traitement.getDatedebut|date('Y-m-d')}}</td> 
                 <td>{{traitement.getDatefin|date('Y-m-d')}}</td>
                 <td>{{traitement.getSejour.getId}}</td>
+                {#<td>{{traitement.getIndication.getId}}</td>#}
             </tr>
         </table>
         {% else %}
@@ -31,6 +32,14 @@
         <br><br> 
     </div>
 
+
+    {% for indication in traitement.getIndication %}
+        <td>{{indication.getId}}</td>
+        {% for medicament in indication.getMedicament %}
+            <td>{{medicament.getId}}</td>
+
+        {% endfor %} 
+    {% endfor %} 
 
     {#
     <ul>

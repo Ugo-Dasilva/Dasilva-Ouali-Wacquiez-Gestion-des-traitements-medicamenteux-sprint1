@@ -21,8 +21,9 @@
             <th>Date Début</th>
             <th>Date Fin</th>
             <th>Afficher le traitement</th>
-          {#<th>Séjour(s)</th>
-            <th>Modifier</th>#}
+          {#<th>Séjour(s)</th>#}
+            <th>Modifier</th>
+            <th>Supprimer</th>
         </tr>
 
         {% for traitement in traitements %}
@@ -30,12 +31,10 @@
                 <td>{{traitement.getId}}</td>
                 <td>{{traitement.getDatedebut|date('Y-m-d')}}</td> 
                 <td>{{traitement.getDatefin|date('Y-m-d')}}</td>
-                <td><a href="{{path("app_traitementId",{id:traitement.id})}}">Ouvrir</a></td>
-                {#<td>
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                </td>#}
-            {# <a href="{{path("app_modif_patient",{id:patient.id})}}">Modifier</a>
-            <a href="{{path("app_supp_patient",{id:patient.id})}}" onclick="Etes-vous sûr de vouloir supprimer ?">Supprimer</a>#}
+                <td><a href="{{path("app_traitementId",{id:traitement.id})}}">Voir plus</a></td>
+                <td><a href="{{path("app_modifTraitement",{id:traitement.id})}}">Modifier</a></td>
+                <td><a href="{{path("app_suppTraitement",{id:traitement.id})}}" onclick="Etes-vous sûr de vouloir supprimer ?">Supprimer</a></td>
+            
             </tr>
         {% else %}
             Pas de traitements trouvés.
