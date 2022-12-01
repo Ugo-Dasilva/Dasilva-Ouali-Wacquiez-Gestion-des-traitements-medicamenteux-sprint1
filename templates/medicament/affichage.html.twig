@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medicaments{% endblock %}
+
+{% block body %}
+
+
+        {% for medicament in lesMedicaments %}
+            <tr>
+                <td>{{medicament.getId}}</td>
+                
+                <td>{{medicament.getLibelle}}</td> 
+                
+                <td>
+                 </tr>
+
+        {% else %}
+     Pas de medicaments trouvés.
+        {% endfor %}     
+{% endblock %}
