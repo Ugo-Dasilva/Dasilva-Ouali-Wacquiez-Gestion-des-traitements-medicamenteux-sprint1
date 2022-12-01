@@ -7,7 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Traitement;
-
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
 
 class TraitementController extends AbstractController
 {
@@ -41,4 +44,31 @@ class TraitementController extends AbstractController
             'traitement' => $unTraitement,
             ]);
         }
+
+    #[Route('/ajoutTraitement', name: 'app_ajoutTraitement')]
+    public function AjouterUnTraitement(ManagerRegistry $doctrine, Request $request): Response
+    {
+        $em=$doctrine->getManager();
+        $traitement=new Traitement();
+        $form = $this->createFormBuilder($traitement)
+        ->add('datedebut',DateType::class, array('label'=>'Date de début du traitement : '))
+        ->add('datefin',DateType::class, array('label'=>'Date de fin du traitement : '))
+        ->add('sejour',DateType::class, array('label'=>'L\'id du séjour : '))
+        ->add('save', SubmitType::class, array('label' => 'Enregistrer le traitement'))
+        ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $traitement = $form->getData();
+            $em->persist($traitement);
+            $em->flush();
+            // redirection vers la liste des traitements
+            return $this->redirectToRoute('app_traitements');
+        }
+        else{
+            return $this->render('traitement/ajoutTraitement.html.twig', array(
+            'form' => $form->createView(),));
+        }
+    }
+
+    
 }
