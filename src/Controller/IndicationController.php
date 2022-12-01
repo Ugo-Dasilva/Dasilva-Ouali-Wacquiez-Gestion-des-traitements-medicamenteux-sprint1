@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\IndicationType;
 
 class IndicationController extends AbstractController
 {
@@ -27,9 +29,59 @@ class IndicationController extends AbstractController
         $repository = $doctrine->getRepository(Indication::class);
         $lesIndications = $repository ->find($id);
         return $this->render('indication/index.html.twig', [
-            'controller_name' => 'IndicationController',
             'lesindications' => $lesIndications,
         ]);
     }
+    #[Route('/ajoutIndication', name: 'app_ajout_indication')]
+    public function ajoutIndication(ManagerRegistry $doctrine,Request $request): Response
+    {   
+        $em = $doctrine->getManager();
+        $indication = new Indication();
+        $form = $this->createForm(IndicationType::class,$indication);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $indication = $form->getData();
+            $em->persist($indication);
+            $em->flush();
+            return $this->redirectToRoute("app_indication");
+        }
+        return $this->render('indication/formulaireajout.html.twig',array (      
+        'form' => $form->createView(),
+        ));
+    }
+
+
+    #[Route('/Modification/{id}', name: 'app_modif_indication')]
+    public function ModifierIndication(ManagerRegistry $doctrine,Request $request,$id): Response
+    {   
+        $em = $doctrine->getManager();
+        $repository = $doctrine->getRepository(Indication::class);
+        $indication = $repository ->find($id);
+        $form = $this->createForm(IndicationType::class,$indication);
+        $form->handleRequest($request);
+        if($form->isSubmitted()&& $form->isValid()){
+            $indication = $form->getData();
+            $em->persist($indication);
+            $em->flush();
+            return $this->redirectToRoute("app_indication");
+        }
+        return $this->render('indication/formulairemodif.html.twig',array (      
+        'form' => $form->createView(),
+        ));
+    }
+
+    #[Route('/supprimer/{id}', name: 'app_suppr_indication')]
+    public function SupprimerIndication(ManagerRegistry $doctrine,Request $request,$id): Response
+    {   
+        $em = $doctrine->getManager();
+        $repository = $doctrine->getRepository(Indication::class);
+        $indication = $repository ->find($id);
+        $em->remove($indication);
+            $em->flush();
+        return $this->render('indication/formulairesuppr.html.twig',[      
+        'message' =>' Indication supprimé'
+    ]);
+    }
+
 
 }

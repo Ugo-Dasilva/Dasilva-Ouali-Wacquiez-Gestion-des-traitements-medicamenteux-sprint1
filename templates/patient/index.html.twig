@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bodrum - Patients{% endblock %}
+
+{% block body %}
+
+ <a class="nav-link" href="{{ path('app_ajout_indication')}} "> Ajouter une indication </a>
+ <br>
+<br>
+
+        {% for Patient in lespatients %}
+            
+                Le patient : {{Patient.getnom}} Le prenom = {{Patient.getprenom}} <a class="nav-link" href="{{ path('app_affichage_patient',{id: Patient.id})}}"> plus d'information </a> <br>
+                <br> 
+               
+
+        {% else %}
+     Pas d'indication trouvés.
+        {% endfor %}     
+{% endblock %}

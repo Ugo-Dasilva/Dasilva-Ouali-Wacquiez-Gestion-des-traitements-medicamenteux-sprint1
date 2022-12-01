@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Affichage de l'indication {% endblock %}
+
+{% block body %}
+
+                L'id du patient est :{{lespatients.getId}}
+                <br>
+                Le nom du patient est :{{lespatients.getnom}}
+                <br>
+                Le prenom  du patient est :{{lespatients.getprenom}}
+                <br>
+                {% for lessejours in lespatients.getsejour %}
+                le date de debut du  sejour du patient est : {{lessejours.getdatedebut|date('Y-m-d')}}
+                <br>
+                                {% for lestraitements in lessejours.gettraitement %}
+                                    la date de debut   du traitement est : {{lestraitements.getdatedebut|date('Y-m-d')}}
+                                    <br>
+                                    la date  de fin du  traitement est : {{lestraitements.getdatefin|date('Y-m-d')}}
+                                    <br>
+                                        {% for lesindications in lestraitements.getindication %}
+                                        Les medicaments sont:  {{lesindications.getmedicament.getlibelle}}
+                                        <br>
+                                {% endfor %}
+                                {% endfor %}
+                {% endfor %}
+                
+               
+
+                
+                
+
+   
+{% endblock %}

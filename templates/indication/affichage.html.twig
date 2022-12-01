@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bodrum - Patients{% endblock %}
+{% block title %}Indications{% endblock %}
 
 {% block body %}
 
+ <a class="nav-link" href="{{ path('app_ajout_indication')}} "> Ajouter une indication </a>
+ <br>
+<br>
+
         {% for indication in lesindications %}
             
-                L'indication : {{indication.getId}} La postologie = {{indication.getposologie}} <a class="nav-link" href="{{ path('app_affichage_indication',{id: indication.id})}}"> plus d'information </a>
-                <br>
+                L'indication : {{indication.getId}} La postologie = {{indication.getposologie}} <a class="nav-link" href="{{ path('app_affichage_indication',{id: indication.id})}}"> plus d'information </a> <br>
+                Modifier: <a class="nav-link" href="{{ path('app_modif_indication',{id: indication.id})}} "> Modifier l'indication </a>
+                Supprimer: <a class="nav-link" href="{{ path('app_suppr_indication',{id: indication.id})}} "> Supprimer l'indication </a>
+                <br> <br>
                
 
         {% else %}
