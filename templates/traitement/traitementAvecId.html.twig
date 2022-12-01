@@ -13,6 +13,7 @@
             <th>Date de Début</th>
             <th>Date de Fin</th>
             <th>Séjour</th>
+            <th>Les traitements contenant le même médicament</th>
           {#<th>Séjour(s)</th>
             <th>Modifier</th>#}
         </tr>
@@ -24,6 +25,15 @@
                 <td>{{traitement.getDatefin|date('Y-m-d')}}</td>
                 <td>{{traitement.getSejour.getId}}</td>
                 {#<td>{{traitement.getIndication.getId}}</td>#}
+                <td>{% for indic in traitement.getIndication %}
+                    Nom du médicament : {{ indic.getMedicament.getLibelle  }}
+                        {% for indica in indic.getMedicament.getIndications %}
+                            {% if traitement.getId != indica.getTraitement.getId %}
+                              | Dans le traitement : {{indica.getTraitement.getId}}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </td>
             </tr>
         </table>
         {% else %}
@@ -33,13 +43,7 @@
     </div>
 
 
-    {% for indication in traitement.getIndication %}
-        <td>{{indication.getId}}</td>
-        {% for medicament in indication.getMedicament %}
-            <td>{{medicament.getId}}</td>
-
-        {% endfor %} 
-    {% endfor %} 
+    
 
     {#
     <ul>

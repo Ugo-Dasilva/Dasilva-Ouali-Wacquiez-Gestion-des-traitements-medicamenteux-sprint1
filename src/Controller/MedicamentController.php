@@ -29,9 +29,6 @@ class MedicamentController extends AbstractController
             'controller_name' => 'MedicamentController',
             'lesMedicaments' => $lesMedicaments,
         ]);
-
-
-
     }
 
      

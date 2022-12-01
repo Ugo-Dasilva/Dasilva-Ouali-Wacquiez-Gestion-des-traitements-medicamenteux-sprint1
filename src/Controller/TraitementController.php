@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Indication;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -46,6 +47,7 @@ class TraitementController extends AbstractController
             'traitement' => $unTraitement,
             ]);
         }
+    
 
     #[Route('/ajoutTraitement', name: 'app_ajoutTraitement')]
     public function AjouterUnTraitement(ManagerRegistry $doctrine, Request $request): Response
@@ -90,7 +92,7 @@ class TraitementController extends AbstractController
         $traitement = $form->getData();
         $em->persist($traitement);
         $em->flush();
-        // redirection vers la liste des adhérents
+        // redirection vers la liste des traitements
         return $this->redirectToRoute('app_traitements');
     }
     else{
@@ -100,15 +102,27 @@ class TraitementController extends AbstractController
     }
 
     #[Route('/suppTraitement/{id}', name: 'app_suppTraitement')]
-        public function indexSuppAdherent(ManagerRegistry $doctrine,$id): Response
+        public function indexSuppTraitement(ManagerRegistry $doctrine,$id): Response
         {
-           $repository=$doctrine->getRepository(Traitement::class);
-           // Récupération de tous les adhérents
-           $unTraitement=$repository->find($id);
-           $em=$doctrine->getManager();
-           $em->remove($unTraitement);
-           $em->flush();
-           return $this->redirectToRoute('app_traitements');
+            $leTraitement = new Traitement();
+            $lindic = new Indication();
+            $repository = $doctrine->getRepository(Indication::class);
+            $lindic = $repository->findBy(
+                ['traitement' => $id]
+            );
+            $em = $doctrine->getManager();
+            foreach ($lindic as $indic) {
+                $em->remove($indic);
+            }
+            $repository = $doctrine->getRepository(Traitement::class);
+            $leTraitement = $repository->find($id);
+            $em = $doctrine->getManager();
+            $em->remove($leTraitement);
+            $em->flush();
+            return $this->redirectToRoute('app_traitements');
+            return $this->render('traitement/index.html.twig', [
+                'message' => 'Traitement supprimé'
+            ]);
         }
-
+      
 }
