@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sejours{% endblock %}
+
+{% block body %}
+
+
+        
+           <tr>
+                <td>id : {{sejour.getId}}</td>
+                
+                <td>{{sejour.getDatedebut|date('Y-m-d')}}</td> 
+                <td>{{sejour.getDatefin|date('Y-m-d')}}</td> 
+                <td>{{sejour.getPatient.getnom}}</td> 
+                
+                
+                              
+                 </tr>
+
+        
+             
+{% endblock %}

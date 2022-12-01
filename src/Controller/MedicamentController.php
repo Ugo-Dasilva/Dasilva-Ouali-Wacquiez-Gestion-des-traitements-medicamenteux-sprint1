@@ -34,7 +34,7 @@ class MedicamentController extends AbstractController
 
      
 #[Route('/affichageUnMedicament/{id}', name: 'app_medicamentId')]
-public function AfficherLeTraitement(ManagerRegistry $doctrine,$id): Response
+public function AfficherLeMedicament(ManagerRegistry $doctrine,$id): Response
 {
    $repository=$doctrine->getRepository(Medicament::class);
    

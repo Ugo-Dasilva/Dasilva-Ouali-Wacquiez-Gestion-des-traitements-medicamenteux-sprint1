@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sejour{% endblock %}
+
+{% block body %}
+
+
+        {% for sejour in sejour %}
+            <tr>
+                <td>{{sejour.getId}}</td>
+                
+                <td>{{sejour.getDatedebut|date('Y-m-d')}}</td> 
+                <td>{{sejour.getDatefin|date('Y-m-d')}}</td> 
+                <td>{{sejour.getPatient.getnom}}</td> 
+                
+                 <td><a href="{{path("app_sejourId",{id:sejour.id})}}">Ouvrir</a></td>
+                 </tr>
+
+        {% else %}
+     Pas de Sejour trouvés.
+        {% endfor %}     
+{% endblock %}
