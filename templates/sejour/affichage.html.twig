@@ -14,9 +14,15 @@
                 <td>{{sejour.getPatient.getnom}}</td> 
                 
                  <td><a href="{{path("app_sejourId",{id:sejour.id})}}">Ouvrir</a></td>
+                 <td><a href="{{path("formulaire_modif_sejour",{id:sejour.id})}}">modif</a></td>
+                 <td><a href="{{path("app_suppSejour",{id:sejour.id})}}">Supprimer</a></td>
                  </tr>
+                 <br>
 
         {% else %}
      Pas de Sejour trouvés.
         {% endfor %}     
+        <br>
+        <br>
+        <td><a href="{{path("formulaire_add_sejour")}}">ajout</a></td>  
 {% endblock %}

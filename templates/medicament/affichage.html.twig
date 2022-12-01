@@ -4,17 +4,24 @@
 
 {% block body %}
 
-
         {% for medicament in lesMedicaments %}
             <tr>
                 <td>{{medicament.getId}}</td>
                 
                 <td>{{medicament.getLibelle}}</td> 
                 
+
+                
                  <td><a href="{{path("app_medicamentId",{id:medicament.id})}}">Ouvrir</a></td>
+                 
+                 <td><a href="{{path("formulaire_modif_medicament",{id:medicament.id})}}">modif</a></td>
+                 <td><a href="{{path("app_suppMedicament",{id:medicament.id})}}">Supprimer</a></td>
                  </tr>
+                 <br>
 
         {% else %}
      Pas de medicaments trouvés.
-        {% endfor %}     
+        {% endfor %}   
+        <br>
+         <td><a href="{{path("formulaire_add_medicament")}}">ajout</a></td>  
 {% endblock %}
