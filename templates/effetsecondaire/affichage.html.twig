@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}effet secondaire{% endblock %}
+
+{% block body %}
+
+        {% for effet in leseffetsecondaires %}
+            <tr>
+                <td>{{effet.getId}}</td>
+                
+                <td>{{effet.getLibelle}}</td> 
+
+                <td><a href="{{path("app_effetsecondaireId",{id:effet.id})}}">Ouvrir</a></td>
+                <td><a href="{{path("formulaire_modif_effet",{id:effet.id})}}">modif</a></td>
+                <td><a href="{{path("app_suppeffet",{id:effet.id})}}">Supprimer</a></td>
+                
+
+                
+                 </tr>
+                 <br>
+
+        {% else %}
+     Pas d'effet secondaire trouvés.
+        {% endfor %}  
+        <br>
+        <td><a href="{{path("formulaire_add_effet")}}">ajout</a></td>   
+        <br>
+{% endblock %}
