@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Affichage de l'indication {% endblock %}
+{% block title %}Affichage des patients {% endblock %}
 
 {% block body %}
 
@@ -9,19 +9,20 @@
                 Le nom du patient est :{{lespatients.getnom}}
                 <br>
                 Le prenom  du patient est :{{lespatients.getprenom}}
-                <br>
-                {% for lessejours in lespatients.getsejour %}
-                le date de debut du  sejour du patient est : {{lessejours.getdatedebut|date('Y-m-d')}}
-                <br>
-                                {% for lestraitements in lessejours.gettraitement %}
-                                    la date de debut   du traitement est : {{lestraitements.getdatedebut|date('Y-m-d')}}
+                <br><br>
+                {% for lessejours in lespatients.getSejour %}
+                La date de debut du  sejour du patient est : {{lessejours.getdatedebut|date('Y-m-d')}}
+                <br><br>
+                                {% for lestraitements in lessejours.getTraitement %}
+                                    Les traitements sont (dans le sens inverse chronologique) :<br>
+                                    La date de debut du traitement est : {{lestraitements.getDatedebut|date('Y-m-d')}}
                                     <br>
-                                    la date  de fin du  traitement est : {{lestraitements.getdatefin|date('Y-m-d')}}
-                                    <br>
-                                        {% for lesindications in lestraitements.getindication %}
+                                    La date de fin du traitement est : {{lestraitements.getDateFin|date('Y-m-d')}}
+                                    <br><br>
+                                    {% for lesindications in lestraitements.getindication %}
                                         Les medicaments sont:  {{lesindications.getmedicament.getlibelle}}
                                         <br>
-                                {% endfor %}
+                                    {% endfor %}
                                 {% endfor %}
                 {% endfor %}
                 

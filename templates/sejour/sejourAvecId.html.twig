@@ -4,19 +4,35 @@
 
 {% block body %}
 
+     --------------------------------------------------------------------------- <br>
+     <h2>Séjour n°{{sejour.getId}}, correspond Patient : {{sejour.getPatient.getnom}} | {{sejour.getPatient.getId}}</h2><br>
+     --------------------------------------------------------------------------- <br>
+     <h4>Les traitements sont (dans le sens inverse chronologique) : </h4>
 
-        
-           <tr>
-                <td>id : {{sejour.getId}}</td>
-                
-                <td>{{sejour.getDatedebut|date('Y-m-d')}}</td> 
-                <td>{{sejour.getDatefin|date('Y-m-d')}}</td> 
-                <td>{{sejour.getPatient.getnom}}</td> 
-                
-                
-                              
-                 </tr>
+     <table class="table">
+        <tr>
+            <th>id</th>
+            <th>Date début traitement</th>
+            <th>Date fin traitement</th>
+            <th>Médicament</th>
+        </tr>
 
-        
-             
+     {% for lestraitements in sejour.getTraitement %}
+          <tr>
+               <td>{{lestraitements.getId}}</td> 
+               <td>{{lestraitements.getDatedebut|date('Y-m-d')}}</td> 
+               <td>{{lestraitements.getDatefin|date('Y-m-d')}}</td>
+               <td>{% for indic in lestraitements.getIndication %}
+                         {{ indic.getMedicament.getLibelle  }} : {{ indic.getPosologie  }}<br>
+                    {% endfor %}
+               </td>
+               {#<td><a href="{{path("app_traitementId",{id:traitement.id})}}">Voir plus</a></td>
+               <td><a href="{{path("app_modifTraitement",{id:traitement.id})}}">Modifier</a></td>
+               <td><a href="{{path("app_suppTraitement",{id:traitement.id})}}" onclick="Etes-vous sûr de vouloir supprimer ?">Supprimer</a></td>#}
+          </tr>
+     {% endfor %}
+     </table>
+     <br>--------------------------------------------------------------------------- <br>
+     
+
 {% endblock %}

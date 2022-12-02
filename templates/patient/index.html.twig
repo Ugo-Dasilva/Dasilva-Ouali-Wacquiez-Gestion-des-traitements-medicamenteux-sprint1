@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bodrum - Patients{% endblock %}
+{% block title %}Affichage du patient{% endblock %}
 
 {% block body %}
 
@@ -9,11 +9,8 @@
 <br>
 
         {% for Patient in lespatients %}
-            
-                Le patient : {{Patient.getnom}} Le prenom = {{Patient.getprenom}} <a class="nav-link" href="{{ path('app_affichage_patient',{id: Patient.id})}}"> plus d'information </a> <br>
+                Le patient : {{Patient.getnom}} | Le prénom = {{Patient.getprenom}} <a class="nav-link" href="{{ path('app_affichage_patient',{id: Patient.id})}}"> | Plus d'informations </a> <br>
                 <br> 
-               
-
         {% else %}
      Pas d'indication trouvés.
         {% endfor %}     
