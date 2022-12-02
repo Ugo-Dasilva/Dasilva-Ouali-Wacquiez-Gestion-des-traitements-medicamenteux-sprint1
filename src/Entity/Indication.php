@@ -22,6 +22,9 @@ class Indication
     #[ORM\ManyToOne(inversedBy: 'indications')]
     private ?Medicament $medicament = null;
 
+    #[ORM\Column]
+    private ?int $quantite = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Indication
     public function setMedicament(?Medicament $medicament): self
     {
         $this->medicament = $medicament;
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->quantite;
+    }
+
+    public function setQuantite(int $quantite): self
+    {
+        $this->quantite = $quantite;
 
         return $this;
     }

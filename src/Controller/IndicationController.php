@@ -23,7 +23,7 @@ class IndicationController extends AbstractController
         ]);
     }
 
-    #[Route('/AffichageuneIndication/{id}', name: 'app_affichage_indication')]
+    #[Route('/indicationaffichage/{id}', name: 'app_affichage_indication')]
     public function Afficher(ManagerRegistry $doctrine,$id): Response
     {   
         $repository = $doctrine->getRepository(Indication::class);
@@ -32,7 +32,7 @@ class IndicationController extends AbstractController
             'lesindications' => $lesIndications,
         ]);
     }
-    #[Route('/ajoutIndication', name: 'app_ajout_indication')]
+    #[Route('/indicationajout', name: 'app_ajout_indication')]
     public function ajoutIndication(ManagerRegistry $doctrine,Request $request): Response
     {   
         $em = $doctrine->getManager();
@@ -51,7 +51,7 @@ class IndicationController extends AbstractController
     }
 
 
-    #[Route('/Modification/{id}', name: 'app_modif_indication')]
+    #[Route('/indicationmodification/{id}', name: 'app_modif_indication')]
     public function ModifierIndication(ManagerRegistry $doctrine,Request $request,$id): Response
     {   
         $em = $doctrine->getManager();
@@ -70,7 +70,7 @@ class IndicationController extends AbstractController
         ));
     }
 
-    #[Route('/supprimer/{id}', name: 'app_suppr_indication')]
+    #[Route('/indicationsupprimer/{id}', name: 'app_suppr_indication')]
     public function SupprimerIndication(ManagerRegistry $doctrine,Request $request,$id): Response
     {   
         $em = $doctrine->getManager();

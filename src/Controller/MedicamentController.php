@@ -42,7 +42,7 @@ public function AfficherLeMedicament(ManagerRegistry $doctrine,$id): Response
     'medicament' => $unMedicament,
     ]);
 }
-#[Route('/formulaire_add_medicament' , name: 'formulaire_add_medicament')]
+#[Route('/medicamentajout' , name: 'formulaire_add_medicament')]
     public function formulaire_ajoutMed(ManagerRegistry $doctrine , Request $request):Response {
         $em=$doctrine->getManager();
         $Medicament=new Medicament();
@@ -61,7 +61,7 @@ public function AfficherLeMedicament(ManagerRegistry $doctrine,$id): Response
         
 
         }
-        #[Route('/formulaire_modif_medicament/{id}' , name: 'formulaire_modif_medicament')]
+        #[Route('/medicamentmodif/{id}' , name: 'formulaire_modif_medicament')]
     public function formulaire_modifMed(ManagerRegistry $doctrine , $id,Request $request):Response {
         $em=$doctrine->getManager();
         $repository=$doctrine->getRepository(Medicament::class);
@@ -77,11 +77,13 @@ public function AfficherLeMedicament(ManagerRegistry $doctrine,$id): Response
         return $this->render ('medicament/formulaire.html.twig',array(
             'form'=> $form->createView(),
         ));
+    }
 
-        
+      
+    
 
-        }
-        #[Route('/suppMedicament/{id}', name: 'app_suppMedicament')]
+
+        #[Route('/medicamentsupp/{id}', name: 'app_suppMedicament')]
         public function SuppMedicament(ManagerRegistry $doctrine,$id): Response
         {
            $repository=$doctrine->getRepository(Medicament::class);

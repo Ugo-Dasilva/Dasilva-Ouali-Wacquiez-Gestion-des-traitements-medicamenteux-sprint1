@@ -26,7 +26,7 @@ class TraitementController extends AbstractController
     }
     
 
-    #[Route('/affichageTraitements', name: 'app_traitements')]
+    #[Route('/traitementaffichage', name: 'app_traitements')]
    public function AfficherLesTraitements(ManagerRegistry $doctrine): Response
    {
        $repository = $doctrine->getRepository(Traitement::class);
@@ -37,7 +37,7 @@ class TraitementController extends AbstractController
        ]);
     }
 
-    #[Route('/affichageUnTraitement/{id}', name: 'app_traitementId')]
+    #[Route('/traitementunaffichage/{id}', name: 'app_traitementId')]
         public function AfficherLeTraitement(ManagerRegistry $doctrine,$id): Response
         {
            $repository=$doctrine->getRepository(Traitement::class);
@@ -49,7 +49,7 @@ class TraitementController extends AbstractController
         }
     
 
-    #[Route('/ajoutTraitement', name: 'app_ajoutTraitement')]
+    #[Route('/traitementid', name: 'app_ajoutTraitement')]
     public function AjouterUnTraitement(ManagerRegistry $doctrine, Request $request): Response
     {
         $em=$doctrine->getManager();
@@ -75,7 +75,7 @@ class TraitementController extends AbstractController
     }
 
     
-    #[Route('/modifTraitement/{id}', name: 'app_modifTraitement')]
+    #[Route('/traitementmodif/{id}', name: 'app_modifTraitement')]
     public function ModifierUnTraitement(ManagerRegistry $doctrine,Request $request, $id): Response
     {
     $repository=$doctrine->getRepository(Traitement::class);
@@ -101,7 +101,7 @@ class TraitementController extends AbstractController
     }
     }
 
-    #[Route('/suppTraitement/{id}', name: 'app_suppTraitement')]
+    #[Route('/traitementsupp/{id}', name: 'app_suppTraitement')]
         public function indexSuppTraitement(ManagerRegistry $doctrine,$id): Response
         {
             $leTraitement = new Traitement();

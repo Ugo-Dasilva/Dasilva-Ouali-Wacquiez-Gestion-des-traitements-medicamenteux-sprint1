@@ -21,8 +21,13 @@ class Medicament
     #[ORM\OneToMany(mappedBy: 'medicament', targetEntity: Indication::class)]
     private Collection $indications;
 
+<<<<<<< HEAD
     #[ORM\ManyToMany(targetEntity: Effetsecondaire::class, mappedBy: 'medicament')]
     private Collection $effetsecondaires;
+=======
+    #[ORM\Column(nullable: true)]
+    private ?int $Quantite = null;
+>>>>>>> b5f6e011097190b55ee986f66f87d8a2bb771c04
 
     public function __construct()
     {
@@ -77,6 +82,7 @@ class Medicament
         return $this;
     }
 
+<<<<<<< HEAD
     /**
      * @return Collection<int, Effetsecondaire>
      */
@@ -100,6 +106,16 @@ class Medicament
         if ($this->effetsecondaires->removeElement($effetsecondaire)) {
             $effetsecondaire->removeMedicament($this);
         }
+=======
+    public function getQuantite(): ?int
+    {
+        return $this->Quantite;
+    }
+
+    public function setQuantite(?int $Quantite): self
+    {
+        $this->Quantite = $Quantite;
+>>>>>>> b5f6e011097190b55ee986f66f87d8a2bb771c04
 
         return $this;
     }
