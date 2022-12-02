@@ -21,7 +21,7 @@ class PatientController extends AbstractController
         ]);
     }
 
-    #[Route('/Affichageunepatient/{id}', name: 'app_affichage_patient')]
+    #[Route('/patientaffichage/{id}', name: 'app_affichage_patient')]
     public function Afficher(ManagerRegistry $doctrine,$id): Response
     {   
         $repository = $doctrine->getRepository(Patient::class);

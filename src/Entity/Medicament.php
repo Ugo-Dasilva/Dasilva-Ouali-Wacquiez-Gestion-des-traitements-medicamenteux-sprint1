@@ -21,6 +21,9 @@ class Medicament
     #[ORM\OneToMany(mappedBy: 'medicament', targetEntity: Indication::class)]
     private Collection $indications;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $Quantite = null;
+
     public function __construct()
     {
         $this->indications = new ArrayCollection();
@@ -69,6 +72,18 @@ class Medicament
                 $indication->setMedicament(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getQuantite(): ?int
+    {
+        return $this->Quantite;
+    }
+
+    public function setQuantite(?int $Quantite): self
+    {
+        $this->Quantite = $Quantite;
 
         return $this;
     }
