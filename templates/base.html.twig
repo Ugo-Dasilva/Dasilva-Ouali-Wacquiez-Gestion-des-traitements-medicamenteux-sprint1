@@ -24,11 +24,24 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
                     <ul class="dropdown-menu" role="menu">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            Connecté en tant que {{ app.user.email }}
+                        <li><a href="{{ path('app_logout')}}">Se déconnecter</a></li>
                         <li><a href="{{ path('app_medicament')}}">Médicaments</a></li>
                         <li><a href="{{ path('app_traitements')}}">Traitements</a></li>
                         <li><a href="{{ path('app_indication')}}">Indications</a></li>
                         <li><a href="{{ path('app_sejours')}}">Séjours</a></li>
-                         <li><a href="{{ path('app_patient')}}">Patients</a></li>
+                        <li><a href="{{ path('app_patient')}}">Patients</a></li>
+                        {% else %}
+
+                        <li><a href="{{ path('app_register')}}">S'inscrire</a></li>
+                        <li><a href="{{ path('app_login')}}">Se connecter</a></li>
+                        {% endif %}
+                        
+                        
+
+
+                         
                     </ul>
                     </li>
                 </ul>
